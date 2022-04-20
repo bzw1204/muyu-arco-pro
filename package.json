@@ -13,7 +13,8 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx}": [
+    "src/**/*.{js,ts,tsx}": [
+      "prettier --write",
       "eslint --fix",
       "git add ."
     ],
@@ -25,6 +26,12 @@
       "stylelint --fix",
       "prettier --write"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -e $GIT_PARAMS"
+    }
   },
   "dependencies": {
     "@arco-design/web-vue": "2.18.0",
